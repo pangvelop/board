@@ -1,7 +1,11 @@
 package com.board.board.service;
 
+import com.board.board.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface PostService {
+@RequiredArgsConstructor
+public class PostService {
+    private final PostRepository postRepository;
 }

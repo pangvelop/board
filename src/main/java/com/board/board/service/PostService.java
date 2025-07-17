@@ -1,6 +1,7 @@
 package com.board.board.service;
 
 import com.board.board.domain.Post;
+import com.board.board.domain.request.PostRequestDto;
 import com.board.board.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,17 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
 
-    public List<Post> getPosts() {
-        return postRepository.findAll();
+    public List<PostRequestDto> getPosts() {
+        return postRepository.findAll()
+                .stream()
+                .map(PostRequestDto::new)
+                .toList();
     }
 
-    public Post getPost(Long id) {
-        return postRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no post"));
+    public PostRequestDto getPost(Long id) {
+        return postRepository.findById(id)
+                .map(PostRequestDto::new)
+                .orElseThrow(() -> new RuntimeException("There is no post"));
     }
 
     public Post createPost(Post post) {

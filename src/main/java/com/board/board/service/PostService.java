@@ -2,6 +2,7 @@ package com.board.board.service;
 
 import com.board.board.domain.Post;
 import com.board.board.domain.request.PostRequestDto;
+import com.board.board.domain.response.PostResponseDto;
 import com.board.board.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,15 @@ public class PostService {
                 .map(PostRequestDto::new)
                 .orElseThrow(() -> new RuntimeException("There is no post"));
     }
+    @Transactional
+    public PostResponseDto createPost(PostRequestDto dto) {
+        Post post = new Post(
+                dto.getTitle(),
+                dto.getContent()
+        );
 
-    public Post createPost(Post post) {
-        return postRepository.save(post);
+        Post savedPost = postRepository.save(post);
+        return new PostResponseDto(savedPost);
     }
 
 //    public Post updatePost(Long id, Post newPost) {

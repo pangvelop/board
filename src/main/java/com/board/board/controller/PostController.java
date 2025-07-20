@@ -2,6 +2,7 @@ package com.board.board.controller;
 
 import com.board.board.domain.Post;
 import com.board.board.domain.request.PostRequestDto;
+import com.board.board.domain.response.PostResponseDto;
 import com.board.board.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +29,8 @@ public class PostController {
     }
 
     @PostMapping
-    public Post create(@RequestBody Post post) {
-        return postService.createPost(post);
+    public PostResponseDto create(@RequestBody PostRequestDto requestDto) {
+        return postService.createPost(requestDto);
     }
 
 }

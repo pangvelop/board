@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class PostRequestDto {
-    private Long id;
     private String title;
     private String content;
 
     public PostRequestDto(Post post) {
-        this.id = post.getId();
         this.title = post.getTitle();
         this.content = post.getContent();
     }

@@ -33,5 +33,9 @@ public class PostController {
         return postService.createPost(requestDto);
     }
 
+    @PostMapping("/{id}")
+    public void update(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+        postService.updatePost(id,requestDto);
+    }
 
 }

@@ -39,11 +39,9 @@ public class PostService {
         return new PostResponseDto(savedPost);
     }
 
-//    public Post updatePost(Long id, Post newPost) {
-//
-//        Post post = getPost(id);
-//        return postRepository.save(post);
-//    }
+    public void updatePost(Long id, PostRequestDto newPost) {
+
+    }
 
     public void deletePost(Long id) {
         postRepository.deleteById(id);
